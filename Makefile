@@ -35,7 +35,7 @@ clean:          ## Remove all files from .gitignore except for `.venv`
 	git clean -xdf --exclude=".venv"
 
 docker-build:   ## Build the Docker image
-	docker build -t discord-webhook-sender app
+	docker build -t discord-webhook-sender -f app/Dockerfile .
 
 docker-run:     ## Run the Docker container
 	docker run --rm -e DISCORD_WEBHOOK_URL="<YOUR_WEBHOOK_URL>" -e DISCORD_MESSAGE="<YOUR_MESSAGE>" discord-webhook-sender

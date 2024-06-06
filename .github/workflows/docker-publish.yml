@@ -36,7 +36,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: ./app
+          context: .
           file: ./app/Dockerfile
           push: true
           tags: ${{ secrets.IMAGE_NAME }}:latest

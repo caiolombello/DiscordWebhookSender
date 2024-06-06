@@ -12,7 +12,7 @@ WORKDIR /app
 
 # Copie os arquivos do projeto
 COPY pyproject.toml poetry.lock ./
-COPY send_webhook.py test_send_webhook.py ./
+COPY app/send_webhook.py app/test_send_webhook.py ./
 
 # Instale as dependências do projeto
 RUN poetry install --no-root
@@ -21,6 +21,7 @@ RUN poetry install --no-root
 RUN poetry run pytest test_send_webhook.py
 
 # Compile o script Python em um binário
+RUN 
 RUN poetry run pyinstaller --onefile send_webhook.py
 
 # Stage 2: Create the minimal runtime image
