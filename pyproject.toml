@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "discordwebhooksender"
+version = "1.0.0"
+description = "WebhookSender is a project designed to send messages to a Discord webhook using Python and Docker."
+authors = ["Caio Barbieri"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.32.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.2.2"
+black = "^23.3.0"
+ruff = "^0.0.280"
+mypy = "^0.971"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
