@@ -34,16 +34,31 @@ make docker-build
 
 ### Run the Docker Container
 
-To run the Docker container, use the following command, replacing `<YOUR_WEBHOOK_URL>` and `<YOUR_MESSAGE>` with your actual values:
+To run the Docker container, use one of the following commands, replacing `<YOUR_WEBHOOK_URL>`, `<YOUR_MESSAGE>`, `<YOUR_EMBED_TITLE>`, `<YOUR_EMBED_DESCRIPTION>`, and `<YOUR_EMBED_COLOR>` with your actual values:
 
+For a simple message:
 ```sh
 docker run --rm -e DISCORD_WEBHOOK_URL="<YOUR_WEBHOOK_URL>" -e DISCORD_MESSAGE="<YOUR_MESSAGE>" discord-webhook-sender
 ```
 
-## Environment Variables
+For a message with embed:
+```sh
+docker run --rm \
+  -e DISCORD_WEBHOOK_URL="<YOUR_WEBHOOK_URL>" \
+  -e DISCORD_MESSAGE="<YOUR_MESSAGE>" \
+  -e DISCORD_EMBED_TITLE="<YOUR_EMBED_TITLE>" \
+  -e DISCORD_EMBED_DESCRIPTION="<YOUR_EMBED_DESCRIPTION>" \
+  -e DISCORD_EMBED_COLOR="<YOUR_EMBED_COLOR>" \
+  discord-webhook-sender
+```
+
+### Environment Variables
 
 - `DISCORD_WEBHOOK_URL`: The URL of the Discord webhook.
 - `DISCORD_MESSAGE`: The message to be sent.
+- `DISCORD_EMBED_TITLE`: The title of the embed (optional).
+- `DISCORD_EMBED_DESCRIPTION`: The description of the embed (optional).
+- `DISCORD_EMBED_COLOR`: The color of the embed in hexadecimal format without `#` (optional).
 
 ## Development
 
@@ -117,6 +132,9 @@ notify:
   variables:
     DISCORD_WEBHOOK_URL: <YOUR_WEBHOOK_URL>
     DISCORD_MESSAGE: "Infrastructure deployment completed successfully."
+    DISCORD_EMBED_TITLE: "Deployment Notification"
+    DISCORD_EMBED_DESCRIPTION: "Your deployment was successful."
+    DISCORD_EMBED_COLOR: "00FF00"
   script: /app/send_webhook
   dependencies:
     - apply
