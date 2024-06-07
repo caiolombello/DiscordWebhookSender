@@ -16,6 +16,7 @@ DiscordWebhookSender is a project designed to send messages to a Discord webhook
   - [Commands](#commands)
 - [Contribution](#contribution)
 - [License](#license)
+- [Pipeline Example](#pipeline-example)
 
 ## Description
 
@@ -103,3 +104,22 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Pipeline Example
+
+Here is an example of how to use DiscordWebhookSender in a pipeline:
+
+```yaml
+notify:
+  stage: post-apply
+  image: 
+    name: caiolombello/discord-webhook-sender
+  variables:
+    DISCORD_WEBHOOK_URL: <YOUR_WEBHOOK_URL>
+    DISCORD_MESSAGE: "Infrastructure deployment completed successfully."
+  script: /app/send_webhook
+  dependencies:
+    - apply
+```
+
+This example demonstrates how to use the DiscordWebhookSender image in a CI/CD pipeline to send a notification after successful infrastructure deployment.
